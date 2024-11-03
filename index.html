@@ -1,9 +1,111 @@
 <!DOCTYPE html>
-<form name="submit-to-google-sheet">
-  <input name="name" type="text" placeholder="Name" required>
-  <input name="tel" type="tel" placeholder="Telefonnummer" required>
-  <button type="submit">Absenden</button>
-</form>
+<head>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+window.onload = function(){
+    const projectName = "Energy Scout"
+
+    document.getElementById('proj-name').innerHTML = projectName;
+};
+
+    </script>
+    <title>Energy Scout</title>
+    <style>
+      /* Header styles */
+      header {
+        padding: 12px;
+        color: #fff;
+        align-items: center;
+      }
+
+      /* Logo styles */
+      .logo {
+        float: left;
+        max-width: 40px;
+        margin-right: 10px;
+      }
+    </style>
+</head>
+
+<header class="bg-gray-200">
+    <h1 class="my-3 text-3xl font-semibold text-gray-700">
+        <img src="src/static/img/logo.jpg" class="logo" alt="Logo">
+        <span id="proj-name"></span>
+    </h1>
+</header>
+<div class="flex items-center min-h-screen bg-gray-100">
+    <div class="container mx-auto">
+      <div id="info" class="max-w-4xl mx-auto my-10 bg-gray-100 p-5">
+        <span class="text-gray-800 dark:text-gray-800" style="font-size:larger">
+          Sparen Sie jetzt bei Ihren Strom- und Gaskosten!
+        </span>
+        <p class="text-gray-800 dark:text-gray-800" style="text-align: left;">
+                <br><br>
+                Möchten Sie Ihre Energiekosten senken und den optimalen Strom- oder Gasvertrag finden? Unser Team von
+                Energieexperten steht bereit, um Ihnen dabei zu helfen!
+                <br>
+                Geben Sie einfach Ihren Namen und Ihre Telefonnummer in das untenstehende Formular ein. Einer unserer
+                erfahrenen Berater wird sich so schnell wie möglich mit Ihnen in Verbindung setzen. In einem kurzen,
+                persönlichen Gespräch analysieren wir Ihren aktuellen Verbrauch und bieten Ihnen maßgeschneiderte
+                Tarifvorschläge, die perfekt auf Ihre Bedürfnisse abgestimmt sind.
+                <br><br>
+
+                Ihre Vorteile:
+                <ul class="text-gray-800 dark:text-gray-800"
+                    style="text-align: left;list-style-type:disc;margin-left: 1rem">
+                    <li>Individuelle Beratung von erfahrenen Energieexperten</li>
+                    <li>exklusive Tarife für Strom und Gas</li>
+                    <li>keine versteckten Kosten oder Verpflichtungen</li>
+                </ul>
+                </p>
+      </div>
+        <div class="max-w-lg mx-auto my-10 bg-blue-400 p-5 rounded-md shadow-sm">
+
+            <div class="text-center">
+
+                <p class="text-gray-100 dark:text-gray-100" style="text-align: left;">
+                    Füllen Sie jetzt das Formular aus und lassen Sie sich kostenlos und unverbindlich beraten. Nutzen
+                    Sie die Chance um Ihre Energiekosten zu senken!
+                </p>
+            </div>
+            <div class="m-7">
+                <form name="submit-to-google-sheet">
+                    <input type="checkbox" name="botcheck" id="" style="display: none;"/>
+
+                    <div class="mb-6">
+                        <label for="name" class="block mb-2 text-sm text-gray-100">Name</label>
+                        <input type="text" name="name" id="name" placeholder="Max Mustermann" required
+                               class="w-full px-3 py-2 h-12 rounded-sm placeholder-gray-500 text-gray-900 bg-gray-100 text-sm focus:outline-none"/>
+                    </div>
+                    <div class="mb-6">
+                        <label for="phone" class="block mb-2 text-sm text-gray-100">Telefon</label>
+                        <input type="text" name="tel" id="phone" placeholder="0664 123456" required
+                               class="w-full px-3 py-2 h-12 rounded-sm placeholder-gray-500 text-gray-900 bg-gray-100 text-sm focus:outline-none"/>
+                    </div>
+                    <div class="mb-6">
+                        <button type="submit"
+                                class="w-full bg-blue-700 inline-block text-white no-underline hover:text-indigo-100 py-4 px-4 rounded-sm focus:outline-none">
+                            Absenden
+                        </button>
+                    </div>
+                    <p class="text-base text-center text-gray-400" id="result"></p>
+                </form>
+                <script>
+  const scriptURL = 'https://script.google.com/macros/s/AKfycbzUzFPuMb18DW4neylOus4nu7TpeMcIdj5VLWNZ6js6-ZCDTnBP_49MR-7MDjrgytbXrw/exec'
+  const form = document.forms['submit-to-google-sheet']
+
+  form.addEventListener('submit', e => {
+    e.preventDefault()
+    fetch(scriptURL, { method: 'POST', body: new FormData(form)})
+      .then(response => console.log('Success!', response))
+      .catch(error => console.error('Error!', error.message))
+  })
+
+                </script>
+            </div>
+        </div>
+    </div>
+</div>
 
 <script>
   const scriptURL = 'https://script.google.com/macros/s/AKfycbzUzFPuMb18DW4neylOus4nu7TpeMcIdj5VLWNZ6js6-ZCDTnBP_49MR-7MDjrgytbXrw/exec'
@@ -15,4 +117,11 @@
       .then(response => console.log('Success!', response))
       .catch(error => console.error('Error!', error.message))
   })
+
 </script>
+<!--<form name="submit-to-google-sheet">-->
+<!--  <input name="name" type="text" placeholder="Name" required><br/>-->
+<!--  <input name="tel" type="tel" placeholder="Telefon" required><br/>-->
+<!--  <button type="submit">Absenden</button>-->
+<!--</form>-->
+
